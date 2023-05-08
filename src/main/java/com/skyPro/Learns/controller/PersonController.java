@@ -19,9 +19,11 @@ public class PersonController {
         try {
             return personService.getPerson(number);
         } catch (BadPersonNumberException e) {
-            return "Попробуйте другой номер";
+            return "Попробуйте другой номер 1";
         } catch (RuntimeException e) {
-            return "Попробуйте в другой раз";
+            return "Попробуйте в другой раз 2";
+        } finally {
+            System.out.println("цикл закончен");
         }
     }
 }

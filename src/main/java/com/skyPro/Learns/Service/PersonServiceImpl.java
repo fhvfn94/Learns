@@ -48,7 +48,7 @@ public class PersonServiceImpl implements PersonService {
     public String getPerson(Integer number) {
         final Person person;
         if (number >= people.length) {
-            throw new BadPersonNumberException();
+            throw new BadPersonNumberException("Ошибка BadPersonNumberException");
         }
         person = people[number];
         final String personDescription = " " +
