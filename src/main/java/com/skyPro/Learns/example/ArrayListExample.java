@@ -1,8 +1,6 @@
 package com.skyPro.Learns.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ArrayListExample {
     public static void main(String[] args) {
@@ -33,5 +31,11 @@ public class ArrayListExample {
         System.out.println("Длина массива numbersArray = " + numbersArray.length);
 //        Распечатаем длину листа
         System.out.println("Длина листа numbersList = " + numbersList.size());
+
+//        создаем HashMap
+        Map<String, Integer> numbersMap = new HashMap<>();
+//        добавляем ключ и зачение в numbersMap
+        numbersMap.put("one", 1);
+        System.out.println(numbersMap);
     }
 }

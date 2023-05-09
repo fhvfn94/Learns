@@ -15,7 +15,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/person")
+    /*@GetMapping("/person")
     public String getPersonInfo(@RequestParam("number") Integer number) {
         try {
             return personService.getPerson(number);
@@ -26,14 +26,20 @@ public class PersonController {
         } finally {
             System.out.println("цикл закончен");
         }
+    }*/
+
+    @GetMapping("/person/passport")
+    public String getPersonInfo(@RequestParam("passport") String passport) {
+        return personService.getPersonByPassport(passport);
     }
+
     @GetMapping("/person/add")
     public String addPerson(
             @RequestParam("name") String name,
             @RequestParam("sureName") String sureName,
             @RequestParam("passport") String passport,
             @RequestParam("professionNumber") Integer professionNumber
-            ) {
+    ) {
         Person person = new Person(name, sureName, passport, professionNumber);
         personService.addPerson(person);
         return "add Person";
