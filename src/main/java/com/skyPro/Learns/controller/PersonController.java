@@ -1,6 +1,7 @@
 package com.skyPro.Learns.controller;
 
 import com.skyPro.Learns.Service.PersonService;
+import com.skyPro.Learns.domain.Person;
 import com.skyPro.Learns.exceptions.BadPersonNumberException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,5 +26,16 @@ public class PersonController {
         } finally {
             System.out.println("цикл закончен");
         }
+    }
+    @GetMapping("/person/add")
+    public String addPerson(
+            @RequestParam("name") String name,
+            @RequestParam("sureName") String sureName,
+            @RequestParam("passport") String passport,
+            @RequestParam("professionNumber") Integer professionNumber
+            ) {
+        Person person = new Person(name, sureName, passport, professionNumber);
+        personService.addPerson(person);
+        return "add Person";
     }
 }
