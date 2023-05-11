@@ -3,13 +3,9 @@ package com.skyPro.Learns.Service;
 import com.skyPro.Learns.domain.Driver;
 import com.skyPro.Learns.domain.Person;
 import com.skyPro.Learns.domain.TruckDriver;
-import com.skyPro.Learns.exceptions.BadPersonNumberException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -51,7 +47,8 @@ public class PersonServiceImpl implements PersonService {
             "безработный",
             "водитель",
             "плотник",
-            "столяр"
+            "столяр",
+            "актер"
     ));
 
    /* @Override
@@ -79,8 +76,28 @@ public class PersonServiceImpl implements PersonService {
                 person.getName() + " " +
                 person.getSureName() + " " +
                 person.getPassport() + " " +
-                professions.get(person.getProfessionNumber());
+                getProfessionNames(person.getProfessionNumber());
         return personDescription;
+    }
+
+    private String getProfessionNames(Set<Integer> professionNumbers) {
+        String result = "";
+        for (Integer professionNumber : professionNumbers) {
+            result = result + " " + professions.get(professionNumber);
+        }
+        return result;
+    }
+
+    @Override
+    public void addProfession(String passport, Integer profession) {
+        final Person person = people.get(passport);
+        if (person == null) {
+            throw new RuntimeException("Человек с таким номером паспорта не найден");
+        }
+        person.getProfessionNumber().add(profession);
+        /*if (!person.getProfessionNumber().contains(profession)) {
+            person.getProfessionNumber().add(profession);
+        }*/
     }
 
     @Override

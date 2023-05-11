@@ -1,20 +1,24 @@
 package com.skyPro.Learns.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Person {
     private String name;
     private String sureName;
     private String passport;
+    private Set<Integer> professionNumbers;
 
-    public int getProfessionNumber() {
-        return professionNumber;
-    }
-
-    private int professionNumber;
     public Person(String name, String sureName, String passport, int professionNumber) {
         this.name = name;
         this.sureName = sureName;
         this.passport = passport;
-        this.professionNumber = professionNumber;
+        this.professionNumbers = new HashSet<>(List.of(professionNumber));
+    }
+    public Set<Integer> getProfessionNumber() {
+        return professionNumbers;
     }
 
     public String getName() {

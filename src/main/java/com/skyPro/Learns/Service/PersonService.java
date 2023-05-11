@@ -7,5 +7,7 @@ public interface PersonService {
 
     String getPersonByPassport(String passport);
 
+    void addProfession(String passport, Integer profession);
+
     void addPerson(Person person);
 }

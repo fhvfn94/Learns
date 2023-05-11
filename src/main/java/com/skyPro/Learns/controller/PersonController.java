@@ -44,4 +44,10 @@ public class PersonController {
         personService.addPerson(person);
         return "add Person";
     }
+
+    @GetMapping("/person/profession/add")
+    public String addProfession(@RequestParam("passport") String passport, @RequestParam("profession") Integer profession) {
+        personService.addProfession(passport, profession);
+        return "профессия успешно добавлена";
+    }
 }
