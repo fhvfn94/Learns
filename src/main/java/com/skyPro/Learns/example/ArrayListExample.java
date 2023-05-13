@@ -37,5 +37,9 @@ public class ArrayListExample {
 //        добавляем ключ и зачение в numbersMap
         numbersMap.put("one", 1);
         System.out.println(numbersMap);
+
+        Set<Integer> col = new HashSet<>(Set.of(1, 2, 3, 4));
+        col.add(5);
+        System.out.println(col);
     }
 }

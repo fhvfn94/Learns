@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class PersonController {
     private final PersonService personService;
@@ -49,5 +51,9 @@ public class PersonController {
     public String addProfession(@RequestParam("passport") String passport, @RequestParam("profession") Integer profession) {
         personService.addProfession(passport, profession);
         return "профессия успешно добавлена";
+    }
+
+    public void getByProfession() {
+        personService.getPersonByProfessions(List.of(1, 2));
     }
 }
