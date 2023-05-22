@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class PersonController {
@@ -53,7 +55,23 @@ public class PersonController {
         return "профессия успешно добавлена";
     }
 
-    public void getByProfession() {
-        personService.getPersonByProfessions(List.of(1, 2));
+    @GetMapping(path = "persons/by-profession")
+    public String getByProfession(@RequestParam("profession") int profession) {
+        final List<Person> personsByProfession = personService.getPersonByProfession(profession);
+        final List<String> passports = new ArrayList<>();
+//        перебор с помощью цикла
+        for (final Person person : personsByProfession) {
+            passports.add("~" + person.getPassport() + "~");
+        }
+//        перебор с помощью метода forEach
+        personsByProfession.forEach(person -> {
+            passports.add(person.getPassport());
+        });
+//        перебор с помощью метода map
+        List<String> streamPassports = personsByProfession.stream()
+                .map(person -> person.getPassport())
+                .map(passport -> "~" + passport + "~")
+                .collect(Collectors.toList());
+        return String.format("%s%n%s", streamPassports.toString(), passports.toString());
     }
 }
