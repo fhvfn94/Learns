@@ -6,6 +6,7 @@ import com.skyPro.Learns.domain.TruckDriver;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -26,7 +27,7 @@ public class PersonServiceImpl implements PersonService {
             new Person(
                     "Жерар",
                     "Депардье",
-                    "3179",
+                    "2179",
                     0),
             "9041",
             new Driver(
@@ -53,13 +54,17 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getPersonByProfession(Integer professionNumber) {
-        List<Person> result = new ArrayList<>();
+/*        List<Person> result = new ArrayList<>();
         for (Person person : people.values()) {
             if (person.getProfessionNumber().contains(professionNumber)) {
                 result.add(person);
             }
-        }
-        return result;
+        }*/
+
+        return people.values().stream()
+                .filter(e -> e.getProfessionNumber().contains(professionNumber))
+                .collect(Collectors.toList());
+
     }
 
     @Override
